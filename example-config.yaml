@@ -1,7 +1,7 @@
 rules:
-  - patern: "ERROR"
+  - pattern: "ERROR"
     color: "red"
-  - patern: "WARNING"
+  - pattern: "WARNING"
     color: "yellow"
-  - patern: "INFO"
+  - pattern: "INFO"
     color: "blue"
