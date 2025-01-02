@@ -16,3 +16,6 @@ def load_config(config_path):
             raise ValueError(f"Error parsing YAML file: {e}")
         except Exception as e:
             raise RuntimeError(f"An unexpected error occurred: {e}")
+
+def prin_colored_logs():
+    pass
