@@ -18,4 +18,11 @@ def load_config(config_path):
             raise RuntimeError(f"An unexpected error occurred: {e}")
 
 def prin_colored_logs():
-    pass
+    color_map = {
+        "red": Fore.RED,
+        "yellow": Fore.YELLOW,
+        "green": Fore.GREEN,
+        "white": Fore.WHITE,
+        "blue": Fore.BLUE,
+        "magenta": Fore.MAGENTA,
+    }
