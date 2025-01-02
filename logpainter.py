@@ -2,7 +2,7 @@
 import yaml
 import os
 import argparse
-from colorama import Fore, Style, init
+from colorama import Fore, Style, init, deinit
 
 init()
 
@@ -46,3 +46,4 @@ if __name__=="__main__":
 
     config=load_config(args.config)
     prin_colored_logs(args.logfile,config)
+    deinit()
