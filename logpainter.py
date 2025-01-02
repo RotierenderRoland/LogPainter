@@ -13,7 +13,7 @@ def load_config(config_path):
         try:
             return yaml.safe_load(file)
         except yaml.YAMLError as YAMLError:
-            raise ValueError(f"Error parsing YAML file: {e}")
+            raise ValueError(f"Error parsing YAML file: {YAMLError}")
         except Exception as e:
             raise RuntimeError(f"An unexpected error occurred: {e}")
 
