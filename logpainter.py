@@ -37,3 +37,12 @@ def prin_colored_logs(log_file,config):
                     break
             if not colored:
                 print(line.strip())
+
+if __name__=="__main__":
+    parser= argparse.ArgumentParser(description="Colorize log files based on patterns in configuration")
+    parser.add_argument("--config",required=True,help="Path to YAML configuration file")
+    parser.add_argument("--logfile",required=True,help="Path to the log file")
+    args= parser.parse_args()
+
+    config=load_config(args.config)
+    prin_colored_logs(args.logfile,config)
