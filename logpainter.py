@@ -17,7 +17,7 @@ def load_config(config_path):
         except Exception as e:
             raise RuntimeError(f"An unexpected error occurred: {e}")
 
-def prin_colored_logs():
+def prin_colored_logs(log_file,config):
     color_map = {
         "red": Fore.RED,
         "yellow": Fore.YELLOW,
@@ -26,3 +26,14 @@ def prin_colored_logs():
         "blue": Fore.BLUE,
         "magenta": Fore.MAGENTA,
     }
+
+    with open(log_file, 'r') as file:
+        for line in file:
+            colored = False
+            for rule in config['rules']:
+                if rule['pattern'] in line:
+                    print(color_map[rule['color']] + line.strip() + Style.RESET_ALL)
+                    colored = True
+                    break
+            if not colored:
+                print(line.strip())
