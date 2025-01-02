@@ -135,6 +135,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+logpainter
 
 # Spyder project settings
 .spyderproject

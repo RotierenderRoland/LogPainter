@@ -1,0 +1,7 @@
+rules:
+  - patern: "ERROR"
+    color: "red"
+  - patern: "WARNING"
+    color: "yellow"
+  - patern: "INFO"
+    color: "blue"
