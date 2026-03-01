@@ -8,6 +8,7 @@ It allows you to define patterns and assign ANSI colors to matching log lines.
 - Pattern-based log highlighting
 - YAML configuration
 - ANSI color output
+- Log streaming
 - Unit tests with pytest
 - Linting with flake8
 - GitHub Actions CI integration
@@ -133,6 +134,9 @@ The project includes a GitHub Actions workflow that:
 - Regex support
 - Case-insensitive matching
 - Rule priority handling
-- Streaming large log files
 
 ---
+
+## License
+
+MIT License 

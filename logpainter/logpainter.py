@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import yaml
 import os
+import sys
 import argparse
 from .colors import color_map
 
@@ -18,14 +19,6 @@ def load_config(config_path):
             raise RuntimeError(f"An unexpected error occurred: {e}")
 
 
-def extract_lines(log_file: str) -> list[str]:
-    file_content = []
-    with open(log_file, 'r') as file:
-        for line in file:
-            file_content.append(line)
-    return file_content
-
-
 def colorise_line(line: str, config: dict) -> str:
     for rule in config['rules']:
         if rule['pattern'] in line:
@@ -35,16 +28,14 @@ def colorise_line(line: str, config: dict) -> str:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Colorize log files based on patterns in configuration")
+        description="Colorize logs from stdin based on patterns in configuration")
     parser.add_argument("--config", required=True,
                         help="Path to YAML configuration file")
-    parser.add_argument("--logfile", required=True,
-                        help="Path to the log file")
     args = parser.parse_args()
 
     config = load_config(args.config)
-    log_file_content = extract_lines(args.logfile)
-    for line in log_file_content:
+
+    for line in sys.stdin:
         print(colorise_line(line, config))
 
 
