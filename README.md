@@ -136,3 +136,7 @@ The project includes a GitHub Actions workflow that:
 - Streaming large log files
 
 ---
+
+## License
+
+MIT License 
