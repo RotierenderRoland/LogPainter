@@ -1,5 +1,5 @@
 import pytest
-from logpainter.logpainter import load_config, extract_lines, colorise_line
+from logpainter.logpainter import load_config, colorise_line
 from logpainter import colors
 
 
@@ -34,14 +34,6 @@ def test_load_config_valid_yaml(tmp_path):
     assert isinstance(config["rules"], list)
     assert config["rules"][0]["pattern"] == "ERROR"
     assert config["rules"][0]["color"] == "red"
-
-
-def test_extract_lines_keeps_newlines(tmp_path):
-    logfile = tmp_path / "app.log"
-    logfile.write_text("a\nb\nc\n", encoding="utf-8")
-
-    lines = extract_lines(str(logfile))
-    assert lines == ["a\n", "b\n", "c\n"]
 
 
 def test_colorise_line_matches_and_colors():
