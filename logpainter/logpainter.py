@@ -2,7 +2,7 @@
 import yaml
 import os
 import argparse
-from colors import color_map
+from .colors import color_map
 
 
 def load_config(config_path):
@@ -33,7 +33,7 @@ def colorise_line(line: str, config: dict) -> str:
     return line.strip()
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(
         description="Colorize log files based on patterns in configuration")
     parser.add_argument("--config", required=True,
@@ -46,3 +46,7 @@ if __name__ == "__main__":
     log_file_content = extract_lines(args.logfile)
     for line in log_file_content:
         print(colorise_line(line, config))
+
+
+if __name__ == "__main__":
+    main()
