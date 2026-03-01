@@ -18,17 +18,19 @@ def load_config(config_path):
             raise RuntimeError(f"An unexpected error occurred: {e}")
 
 
-def print_colored_logs(log_file, config):
+def extract_lines(log_file: str) -> list[str]:
+    file_content = []
     with open(log_file, 'r') as file:
         for line in file:
-            colored = False
-            for rule in config['rules']:
-                if rule['pattern'] in line:
-                    print(color_map[rule['color']](line.strip()))
-                    colored = True
-                    break
-            if not colored:
-                print(line.strip())
+            file_content.append(line)
+    return file_content
+
+
+def colorise_line(line: str, config: dict) -> str:
+    for rule in config['rules']:
+        if rule['pattern'] in line:
+            return color_map[rule['color']](line.strip())
+    return line.strip()
 
 
 if __name__ == "__main__":
@@ -41,4 +43,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     config = load_config(args.config)
-    print_colored_logs(args.logfile, config)
+    log_file_content = extract_lines(args.logfile)
+    for line in log_file_content:
+        print(colorise_line(line, config))
