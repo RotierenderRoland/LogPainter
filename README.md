@@ -8,6 +8,7 @@ It allows you to define patterns and assign ANSI colors to matching log lines.
 - Pattern-based log highlighting
 - YAML configuration
 - ANSI color output
+- Log streaming
 - Unit tests with pytest
 - Linting with flake8
 - GitHub Actions CI integration
@@ -43,13 +44,13 @@ pip install -e ".[dev]"
 Run the CLI tool:
 
 ```bash
-logpainter --config example-config.yaml --logfile test.log
+cat test.log | logpainter --config example-config.yamlg
 ```
 
 If not installed as a CLI entry point:
 
 ```bash
-python -m logpainter.logpainter --config example-config.yaml --logfile test.log
+cat test.log | python -m logpainter.logpainter --config example-config.yaml
 ```
 
 ---
@@ -133,7 +134,6 @@ The project includes a GitHub Actions workflow that:
 - Regex support
 - Case-insensitive matching
 - Rule priority handling
-- Streaming large log files
 
 ---
 
