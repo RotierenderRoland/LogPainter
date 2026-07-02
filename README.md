@@ -13,6 +13,7 @@ It allows you to define patterns and assign ANSI colors to matching log lines.
 - Linting with flake8
 - GitHub Actions CI integration
 - Installable as a Python package
+- Regex support
 
 ---
 
@@ -131,7 +132,6 @@ The project includes a GitHub Actions workflow that:
 
 ## Future Improvements
 
-- Regex support
 - Case-insensitive matching
 - Rule priority handling
 
