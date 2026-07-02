@@ -4,6 +4,7 @@ import os
 import sys
 import argparse
 from .colors import color_map
+import re
 
 
 def load_config(config_path):
@@ -20,9 +21,13 @@ def load_config(config_path):
 
 
 def colorise_line(line: str, config: dict) -> str:
-    for rule in config['rules']:
-        if rule['pattern'] in line:
-            return color_map[rule['color']](line.strip())
+    for rule in config.get('rules'):
+        literal = rule.get("literal")
+        pattern = rule.get("pattern")
+        if literal and rule.get('literal') in line:
+            return color_map[rule.get('color')](line.strip())
+        elif pattern and re.search(rule.get('pattern'), line):
+            return color_map[rule.get('color')](line.strip())
     return line.strip()
 
 

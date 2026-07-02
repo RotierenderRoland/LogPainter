@@ -44,7 +44,7 @@ pip install -e ".[dev]"
 Run the CLI tool:
 
 ```bash
-cat test.log | logpainter --config example-config.yamlg
+cat test.log | logpainter --config example-config.yaml
 ```
 
 If not installed as a CLI entry point:
@@ -61,12 +61,12 @@ Example `example-config.yaml`:
 
 ```yaml
 rules:
-  - pattern: ERROR
-    color: red
-  - pattern: WARNING
-    color: yellow
-  - pattern: INFO
-    color: green
+  - literal: 'ERROR'
+    color: 'red'
+  - literal: 'WARNING'
+    color: 'yellow'
+  - pattern: ''(((?!25?[6-9])[12]\d|[1-9])?\d\.?\b){4}''
+    color: 'green'
 ```
 
 Supported colors:
