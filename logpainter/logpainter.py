@@ -21,19 +21,21 @@ def load_config(config_path: str) -> dict:
 
 
 def validate_config(config: dict) -> None:
+    if config is None:
+        raise ValueError('Config is empty')
     validate_rules(config)
     validate_colors(config)
 
 
 def validate_colors(config: dict) -> None:
     if not all(rule.get('color') in color_map.keys() for rule in config.get('rules')):
-        raise Exception(
-            f'Not all colors are valid. Valid colors are {",".join(color_map.keys)}')
+        raise ValueError(
+            f'Not all colors are valid. Valid colors are {",".join(color_map.keys())}')
 
 
 def validate_rules(config: dict) -> None:
     if not all('literal' in rule or 'pattern' in rule for rule in config.get('rules')):
-        raise Exception('Every rule needs a literal or pattern')
+        raise ValueError('Every rule needs a literal or pattern')
 
 
 def colorise_line(line: str, config: dict) -> str:
