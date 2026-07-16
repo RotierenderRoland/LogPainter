@@ -23,6 +23,8 @@ def load_config(config_path: str) -> dict:
 def validate_config(config: dict) -> None:
     if config is None:
         raise ValueError('Config is empty')
+    if not config.get('rules'):
+        raise ValueError('Config should start with "rule" as key')
     validate_rules(config)
     validate_colors(config)
 
