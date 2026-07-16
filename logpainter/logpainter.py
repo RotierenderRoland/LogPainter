@@ -7,7 +7,7 @@ from .colors import color_map
 import re
 
 
-def load_config(config_path):
+def load_config(config_path: str) -> dict:
     if not os.path.exists(config_path):
         raise FileNotFoundError(
             f"The configuration file '{config_path}' does not exist.")
@@ -18,6 +18,22 @@ def load_config(config_path):
             raise ValueError(f"Error parsing YAML file: {YAMLError}")
         except Exception as e:
             raise RuntimeError(f"An unexpected error occurred: {e}")
+
+
+def validate_config(config: dict) -> None:
+    validate_rules(config)
+    validate_colors(config)
+
+
+def validate_colors(config: dict) -> None:
+    if not all(rule.get('color') in color_map.keys() for rule in config.get('rules')):
+        raise Exception(
+            f'Not all colors are valid. Valid colors are {",".join(color_map.keys)}')
+
+
+def validate_rules(config: dict) -> None:
+    if not all('literal' in rule or 'pattern' in rule for rule in config.get('rules')):
+        raise Exception('Every rule needs a literal or pattern')
 
 
 def colorise_line(line: str, config: dict) -> str:
@@ -39,6 +55,7 @@ def main():
     args = parser.parse_args()
 
     config = load_config(args.config)
+    validate_config(config)
 
     for line in sys.stdin:
         print(colorise_line(line, config))
